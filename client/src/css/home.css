@@ -1,0 +1,259 @@
+body {
+  background-color: white;
+  font-family: Futura Demi;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes undimBackground {
+  100% {
+    background: none;
+  }
+}
+
+.logo-wrapper {
+  display: flex;
+  backface-visibility: hidden;
+  align-items: flex-end;
+}
+
+.logo {
+  width: 400px;
+  height: 150px;
+}
+
+.logo span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+
+  font-size: 80px;
+  text-transform: uppercase;
+
+  animation-name: fadeIn, reduceFontSize;
+  animation-duration: 0.7s, 0.7s;
+  animation-delay: 0.7s, 1.2s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+.rectangle {
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  background: white;
+  animation-name: zoomIn, moveLeft, zoomOut;
+  animation-duration: 0.7s, 0.5s, 0.7s;
+  animation-delay: 0s, 0.7s, 1.2s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+.innerRectangle {
+  width: inherit;
+  height: inherit;
+  background: none;
+  border-top: 7px white solid;
+  border-bottom: 7px white solid;
+  box-sizing: border-box;
+  animation-name: moveRight, minimizeBorders;
+  animation-duration: 0.5s, 0.7s;
+  animation-delay: 0.7s, 1.2s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+  color: white;
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    width: 500px;
+    height: 250px;
+  }
+}
+
+@keyframes moveLeft {
+  100% {
+    transform: translate(-105%, -50%);
+  }
+}
+
+@keyframes moveRight {
+  100% {
+    transform: translateX(105%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  100% {
+    top: 100px;
+    width: 200px;
+    height: 100px;
+  }
+}
+
+@keyframes reduceFontSize {
+  100% {
+    font-size: 50px;
+  }
+}
+
+@keyframes minimizeBorders {
+  100% {
+    border-top: 3px white solid;
+    border-bottom: 3px white solid;
+  }
+}
+
+.left-strip,
+.right-strip {
+  position: relative;
+  overflow: hidden;
+  mask-image: radial-gradient(#fff, #000);
+  contain: strict;
+  flex: 1 1;
+  height: 3px;
+}
+
+.left-strip:before,
+.right-strip:before {
+  content: "";
+  position: absolute;
+  z-index: 100;
+  width: 0%;
+  height: 100%;
+  background: #fff;
+
+  animation-name: extendStrips;
+  animation-duration: 0.7s;
+  animation-delay: 2.5s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+.left-strip:before {
+  right: 0;
+}
+
+@keyframes extendStrips {
+  100% {
+    width: 100%;
+  }
+}
+
+.pageDimmer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 1;
+  z-index: 1;
+  pointer-events: none;
+
+  animation-name: undimBackground;
+  animation-duration: 1.3s;
+  animation-delay: 2.1s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes undimBackground {
+  100% {
+    opacity: 0;
+  }
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -10;
+  filter: brightness(70%);
+}
+
+.header-menu {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 100%;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.header-menu-item {
+  display: inline-block;
+  list-style: none;
+  font-family: monospace;
+  font-size: 25px;
+  margin-right: 25px;
+  color: white;
+  position: relative;
+  margin: 0 50px;
+}
+.header-menu-item::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  top: 40px;
+  display: block;
+  transition: 0.3s;
+}
+
+.header-menu-item:hover:after {
+  width: 100%;
+}
+
+.header-menu-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tagline {
+  margin-top: 88vh;
+  height: 70px;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.tagline h2{
+    text-align: center;
+}
+
+.tagline .emphasize{
+    color: white;
+    background: black;
+    padding: 10px
+}
